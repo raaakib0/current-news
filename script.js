@@ -12,6 +12,7 @@ const displayCategories = categories => {
         const createElement = document.createElement('div');
         createElement.innerHTML =
             ` <a class="nav-link active" onclick="loadCategoriesNews('${categorie.category_id}')" aria-current="page" href="#">${categorie.category_name}</a>`
+
         displayCategoriesId.appendChild(createElement);
 
     });
@@ -21,6 +22,7 @@ loadCategories();
 
 // news
 const loadCategoriesNews = (catId) => {
+    toggleSpinner(true);
     fetch(`https://openapi.programming-hero.com/api/news/category/${catId}`)
         .then(res => res.json())
         .then(data => displayNews(data.data));
@@ -31,6 +33,7 @@ const displayNews = news => {
     news.forEach(newsCard => {
         const createNewsElement = document.createElement('div');
         createNewsElement.classList.add('card');
+        createNewsElement.classList.add('mb-4');
         // console.log(newsCard.rating);
         createNewsElement.innerHTML = `
 
@@ -74,6 +77,7 @@ const displayNews = news => {
         `;
         displayNewsId.appendChild(createNewsElement);
     })
+    toggleSpinner(false);
 }
 
 // news modal
@@ -90,8 +94,6 @@ const displayModal = newsModal => {
     modalDisplayId.innerHTML = ``;
 
     newsModal.forEach(news => {
-        console.log(news);
-
         const createNewsElementModal = document.createElement('div');
         createNewsElementModal.classList.add('modal-content');
 
@@ -109,8 +111,19 @@ const displayModal = newsModal => {
         modalDisplayId.appendChild(createNewsElementModal);
 
     });
+
+
 }
 
+const toggleSpinner = isLoading => {
+    const spinnerId = document.getElementById('spinner');
+    if (isLoading) {
+        spinnerId.classList.remove('d-none')
+    } else {
+        spinnerId.classList.add('d-none')
+
+    }
+}
 // loadCategoriesNews();
 
 
