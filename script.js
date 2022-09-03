@@ -13,9 +13,9 @@ const displayCategories = categories => {
 
     categories.forEach(categorie => {
         const createElement = document.createElement('div');
-        createElement.innerHTML = `
-         <a class="nav-link active" aria-current="page" href="#">${categorie.category_name}</a>
-    `
+        // console.log(categorie.category_id);
+        createElement.innerHTML = 
+        ` <a class="nav-link active" onclick="loadCategoriesNews('${categorie.category_id}')" aria-current="page" href="#">${categorie.category_name}</a>`
         displayCategoriesId.appendChild(createElement);
 
     });
@@ -24,15 +24,16 @@ const displayCategories = categories => {
 loadCategories();
 
 // news
-const loadCategoriesNews = () => {
-    fetch('https://openapi.programming-hero.com/api/news/category/01')
+const loadCategoriesNews = (catId) => {
+    console.log(catId);
+    fetch(`https://openapi.programming-hero.com/api/news/category/${catId}`)
         .then(res => res.json())
         .then(data => displayNews(data.data));
 }
 const displayNews = news => {
     const displayNewsId = document.getElementById('displayNews');
     news.forEach(newsCard => {
-        console.log(newsCard);
+        // console.log(newsCard);
         const createNewsElement = document.createElement('div');
         createNewsElement.classList.add('card');
         createNewsElement.innerHTML = `
@@ -44,7 +45,7 @@ const displayNews = news => {
                     <div class="card-body">
                         <h5 class="card-title">${newsCard.title}</h5>
                         <p class="card-text"> ${newsCard.details} </p>
-// lower part
+
                         <div class="d-flex justify-content-around align-content-center">
 
                         <div class="d-flex align-items-center">
