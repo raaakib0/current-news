@@ -11,7 +11,7 @@ const displayCategories = categories => {
     categories.forEach(categorie => {
         const createElement = document.createElement('div');
         createElement.innerHTML =
-            ` <a class="nav-link active" onclick="loadCategoriesNews('${categorie.category_id}')" aria-current="page" href="#">${categorie.category_name}</a>`
+            ` <a class="nav-link active text-light fs-5 ps-4" onclick="loadCategoriesNews('${categorie.category_id}')" aria-current="page" href="#">${categorie.category_name}</a>`
 
         displayCategoriesId.appendChild(createElement);
 
@@ -34,27 +34,26 @@ const displayNews = news => {
         const createNewsElement = document.createElement('div');
         createNewsElement.classList.add('card');
         createNewsElement.classList.add('mb-4');
-        // console.log(newsCard.rating);
         createNewsElement.innerHTML = `
 
-         <div onclick="newsModal( '${newsCard._id}' )" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="row g-0">
+         <div onclick="newsModal( '${newsCard._id}' )" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="  row g-0">
                 <div class="col-md-4">
                     <img src="${newsCard.image_url}" class="img-fluid rounded-start" alt="...">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 text-bg-primary p-3">
                     <div class="card-body">
                         <h5 class="card-title">${newsCard.title}</h5>
                         <p class="card-text"> ${newsCard.details.slice(0, 650) + '...'}  </p>
 
-                        <div class="d-flex justify-content-around align-content-center">
+                        <div class="d-flex justify-content-around align-items-center align-content-center">
 
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center align-content-center">
                             <img style="width: 50px; border-radius: 100px;"  src=" ${newsCard.author.img} " alt="">
-                            <h5> ${newsCard.author.name} </h5>
+                            <h5 class="ps-3"> ${newsCard.author.name} </h5>
                         </div>
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center align-content-center ">
                             <i class="fa-solid fa-eye"></i>
-                            <p> ${newsCard.total_view} </p>
+                            <p class="ps-3 "> ${newsCard.total_view} </p>
                         </div>
 
                         <div>
@@ -62,7 +61,7 @@ const displayNews = news => {
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half"></i>
+                            <i class="fa-solid fa-star"></i>
                         </div>
 
                         <div>
