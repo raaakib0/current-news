@@ -5,13 +5,13 @@ const loadCategories = () => {
 }
 
 const displayCategories = categories => {
-   
+
     const displayCategoriesId = document.getElementById('displayCategories');
 
     categories.forEach(categorie => {
         const createElement = document.createElement('div');
-        createElement.innerHTML = 
-        ` <a class="nav-link active" onclick="loadCategoriesNews('${categorie.category_id}')" aria-current="page" href="#">${categorie.category_name}</a>`
+        createElement.innerHTML =
+            ` <a class="nav-link active" onclick="loadCategoriesNews('${categorie.category_id}')" aria-current="page" href="#">${categorie.category_name}</a>`
         displayCategoriesId.appendChild(createElement);
 
     });
@@ -33,7 +33,8 @@ const displayNews = news => {
         createNewsElement.classList.add('card');
         // console.log(newsCard.rating);
         createNewsElement.innerHTML = `
-         <div class="row g-0">
+
+         <div onclick="newsModal( '${newsCard._id}' )" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="row g-0">
                 <div class="col-md-4">
                     <img src="${newsCard.image_url}" class="img-fluid rounded-start" alt="...">
                 </div>
@@ -73,9 +74,43 @@ const displayNews = news => {
         `;
         displayNewsId.appendChild(createNewsElement);
     })
-
 }
 
-loadCategoriesNews();
+// news modal
+const newsModal = (newsId) => {
+    fetch(`https://openapi.programming-hero.com/api/news/${newsId} `)
+        .then(res => res.json())
+        .then(data => displayModal(data.data));
+
+    // console.log(newsId);
+}
+
+const displayModal = newsModal => {
+    const modalDisplayId = document.getElementById('modalAdd');
+    modalDisplayId.innerHTML = ``;
+
+    newsModal.forEach(news => {
+        console.log(news);
+
+        const createNewsElementModal = document.createElement('div');
+        createNewsElementModal.classList.add('modal-content');
+
+        createNewsElementModal.innerHTML = `
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">${news.title}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body ">
+                        <img src=" ${news.thumbnail_url} " alt="">
+                        <p class="card-text"> ${news.details} </p>
+                    </div>
+        `;
+
+        modalDisplayId.appendChild(createNewsElementModal);
+
+    });
+}
+
+// loadCategoriesNews();
 
 
