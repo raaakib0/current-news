@@ -5,15 +5,11 @@ const loadCategories = () => {
 }
 
 const displayCategories = categories => {
-    // for (const categorie of categories) {
-
-    //     console.log(categorie);
-    // }
+   
     const displayCategoriesId = document.getElementById('displayCategories');
 
     categories.forEach(categorie => {
         const createElement = document.createElement('div');
-        // console.log(categorie.category_id);
         createElement.innerHTML = 
         ` <a class="nav-link active" onclick="loadCategoriesNews('${categorie.category_id}')" aria-current="page" href="#">${categorie.category_name}</a>`
         displayCategoriesId.appendChild(createElement);
@@ -25,15 +21,14 @@ loadCategories();
 
 // news
 const loadCategoriesNews = (catId) => {
-    console.log(catId);
     fetch(`https://openapi.programming-hero.com/api/news/category/${catId}`)
         .then(res => res.json())
         .then(data => displayNews(data.data));
 }
 const displayNews = news => {
     const displayNewsId = document.getElementById('displayNews');
+    displayNewsId.innerHTML = ``;
     news.forEach(newsCard => {
-        // console.log(newsCard);
         const createNewsElement = document.createElement('div');
         createNewsElement.classList.add('card');
         createNewsElement.innerHTML = `
@@ -81,26 +76,5 @@ const displayNews = news => {
 }
 
 loadCategoriesNews();
-// const displayMill = mills => {
 
-//     const cardId = document.getElementById('card-add');
-
-//     mills.forEach(mill => {
-//         console.log(mill);
-
-//     //     const divcreate = document.createElement('div');
-//     //     divcreate.classList.add('col');
-//     //     divcreate.innerHTML = `
-//     //  <div class="card h-100">
-//     //              <img src="..." class="card-img-top" alt="...">
-//     //              <div class="card-body">
-//     //                  <h5 class="card-title">Card title</h5>
-//     //                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-//     //                      content. This content is a little bit longer.</p>
-//     //              </div>
-//     //          </div> `;
-//     //     cardId.appendChild(divcreate);
-//     })
-
-// }
 
