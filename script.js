@@ -48,7 +48,7 @@ const displayNews = news => {
                         <div class="d-flex justify-content-around align-content-center">
 
                         <div class="d-flex align-items-center">
-                            <img  class="" src=" ${newsCard.author.img} " alt="">
+                            <img style="width: 50px; border-radius: 100px;"  src=" ${newsCard.author.img} " alt="">
                             <h5> ${newsCard.author.name} </h5>
                         </div>
                         <div class="d-flex align-items-center">
