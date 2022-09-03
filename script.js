@@ -49,14 +49,14 @@ const displayNews = news => {
 
                         <div class="d-flex align-items-center align-content-center">
                             <img style="width: 50px; border-radius: 100px;"  src=" ${newsCard.author.img} " alt="">
-                            <h5 class="ps-3"> ${newsCard.author.name} </h5>
+                            <h5 class="ps-2"> ${newsCard.author.name} </h5>
                         </div>
                         <div class="d-flex align-items-center align-content-center ">
                             <i class="fa-solid fa-eye"></i>
-                            <p class="ps-3 "> ${newsCard.total_view} </p>
+                            <p class="ps-2 "> ${newsCard.total_view} </p>
                         </div>
 
-                        <div>
+                        <div class="d-flex">
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
@@ -104,6 +104,26 @@ const displayModal = newsModal => {
                     <div class="modal-body ">
                         <img src=" ${news.thumbnail_url} " alt="">
                         <p class="card-text"> ${news.details} </p>
+                    </div>
+                    <div class="d-flex justify-content-around align-items-center align-content-center">
+
+                        <div class="d-flex align-items-center align-content-center">
+                            <img style="width: 50px; border-radius: 100px;"  src=" ${news.author.img} " alt="">
+                            <h5 class="ps-2"> ${news.author.name} </h5>
+                        </div>
+                        <div class="d-flex align-items-center align-content-center ">
+                            <i class="fa-solid fa-eye"></i>
+                            <p class="ps-2 "> ${news.total_view} </p>
+                        </div>
+
+                        <div class="d-flex">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+
                     </div>
         `;
 
