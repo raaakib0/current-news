@@ -31,6 +31,7 @@ const displayNews = news => {
     news.forEach(newsCard => {
         const createNewsElement = document.createElement('div');
         createNewsElement.classList.add('card');
+        // console.log(newsCard.rating);
         createNewsElement.innerHTML = `
          <div class="row g-0">
                 <div class="col-md-4">
@@ -39,7 +40,7 @@ const displayNews = news => {
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">${newsCard.title}</h5>
-                        <p class="card-text"> ${newsCard.details} </p>
+                        <p class="card-text"> ${newsCard.details.slice(0, 650) + '...'}  </p>
 
                         <div class="d-flex justify-content-around align-content-center">
 
@@ -49,7 +50,7 @@ const displayNews = news => {
                         </div>
                         <div class="d-flex align-items-center">
                             <i class="fa-solid fa-eye"></i>
-                            <p>435k</p>
+                            <p> ${newsCard.total_view} </p>
                         </div>
 
                         <div>
