@@ -1,7 +1,8 @@
 const loadCategories = () => {
     fetch('https://openapi.programming-hero.com/api/news/categories')
         .then(res => res.json())
-        .then(data => displayCategories(data.data.news_category));
+        .then(data => displayCategories(data.data.news_category))
+        .catch(error => console.log(error))
 }
 
 const displayCategories = categories => {
@@ -25,7 +26,9 @@ const loadCategoriesNews = (catId) => {
     toggleSpinner(true);
     fetch(`https://openapi.programming-hero.com/api/news/category/${catId}`)
         .then(res => res.json())
-        .then(data => displayNews(data.data));
+        .then(data => displayNews(data.data))
+        .catch(error => console.log(error))
+
 }
 const displayNews = news => {
 
@@ -33,7 +36,13 @@ const displayNews = news => {
     displayNewsId.innerHTML = ``;
     const newsLength = news.length;
     const displayLengthId = document.getElementById('innerTextField');
-    displayLengthId.innerText = newsLength + " news found ";
+    if (newsLength > 0) {
+        displayLengthId.innerText = newsLength + " News Found ";
+
+    } else {
+        displayLengthId.innerText = "No News Found ";
+
+    }
     // short
     news.sort((a, b) => {
         return b.total_view - a.total_view
@@ -57,11 +66,11 @@ const displayNews = news => {
 
                         <div class="d-flex align-items-center align-content-center">
                             <img style="width: 50px; border-radius: 100px;"  src=" ${newsCard.author.img} " alt="">
-                            <h5 class="ps-2"> ${newsCard.author.name} </h5>
+                            <h5 class="ps-2"> ${newsCard.author.name ? newsCard.author.name : "No Name Found"} </h5>
                         </div>
                         <div class="d-flex align-items-center align-content-center ">
                             <i class="fa-solid fa-eye"></i>
-                            <p class="ps-2 "> ${newsCard.total_view} </p>
+                            <p class="ps-2 "> ${newsCard.total_view ? newsCard.total_view : "No Data Available"} </p>
                         </div>
 
                         <div class="d-flex">
@@ -91,7 +100,9 @@ const displayNews = news => {
 const newsModal = (newsId) => {
     fetch(`https://openapi.programming-hero.com/api/news/${newsId} `)
         .then(res => res.json())
-        .then(data => displayModal(data.data));
+        .then(data => displayModal(data.data))
+        .catch(error => console.log(error))
+
 
     // console.log(newsId);
 }
@@ -113,15 +124,15 @@ const displayModal = newsModal => {
                         <img src=" ${news.thumbnail_url} " alt="">
                         <p class="card-text"> ${news.details} </p>
                     </div>
-                    <div class="d-flex justify-content-around align-items-center align-content-center">
+                    <div class=" mb-3 d-flex justify-content-around align-items-center align-content-center">
 
                         <div class="d-flex align-items-center align-content-center">
                             <img style="width: 50px; border-radius: 100px;"  src=" ${news.author.img} " alt="">
-                            <h5 class="ps-2"> ${news.author.name} </h5>
+                            <h5 class="ps-2"> ${news.author.name ? news.author.name : "No Name Found"} </h5>
                         </div>
                         <div class="d-flex align-items-center align-content-center ">
                             <i class="fa-solid fa-eye"></i>
-                            <p class="ps-2 "> ${news.total_view} </p>
+                            <p class="ps-2 "> ${news.total_view ? news.total_view : "No Data Available"} </p>
                         </div>
 
                         <div class="d-flex">
