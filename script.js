@@ -102,9 +102,6 @@ const newsModal = (newsId) => {
         .then(res => res.json())
         .then(data => displayModal(data.data))
         .catch(error => console.log(error))
-
-
-    // console.log(newsId);
 }
 
 const displayModal = newsModal => {
@@ -149,8 +146,6 @@ const displayModal = newsModal => {
         modalDisplayId.appendChild(createNewsElementModal);
 
     });
-
-
 }
 
 const toggleSpinner = isLoading => {
@@ -162,6 +157,5 @@ const toggleSpinner = isLoading => {
 
     }
 }
-// loadCategoriesNews();
 
 
