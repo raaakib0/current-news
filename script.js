@@ -28,8 +28,16 @@ const loadCategoriesNews = (catId) => {
         .then(data => displayNews(data.data));
 }
 const displayNews = news => {
+
     const displayNewsId = document.getElementById('displayNews');
     displayNewsId.innerHTML = ``;
+    const newsLength = news.length;
+    const displayLengthId = document.getElementById('innerTextField');
+    displayLengthId.innerText = newsLength + " news found ";
+    // short
+    news.sort((a, b) => {
+        return b.total_view - a.total_view
+    });
     news.forEach(newsCard => {
         const createNewsElement = document.createElement('div');
         createNewsElement.classList.add('card');
